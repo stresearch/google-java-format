@@ -43,6 +43,7 @@ public class CommandLineOptionsParserTest {
     assertThat(options.files()).isEmpty();
     assertThat(options.stdin()).isFalse();
     assertThat(options.aosp()).isFalse();
+    assertThat(options.astarte()).isFalse();
     assertThat(options.help()).isFalse();
     assertThat(options.lengths()).isEmpty();
     assertThat(options.lines().asRanges()).isEmpty();
@@ -76,6 +77,11 @@ public class CommandLineOptionsParserTest {
   @Test
   public void aosp() {
     assertThat(CommandLineOptionsParser.parse(Arrays.asList("-aosp")).aosp()).isTrue();
+  }
+
+  @Test
+  public void astarte() {
+    assertThat(CommandLineOptionsParser.parse(Arrays.asList("-astarte")).astarte()).isTrue();
   }
 
   @Test

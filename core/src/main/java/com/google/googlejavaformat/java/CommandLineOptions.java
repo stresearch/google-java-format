@@ -32,6 +32,8 @@ final class CommandLineOptions {
   private final ImmutableList<Integer> offsets;
   private final ImmutableList<Integer> lengths;
   private final boolean aosp;
+  // taa: DIfferent handling for ASTARTE / STR code
+  private final boolean astarte;
   private final boolean version;
   private final boolean help;
   private final boolean stdin;
@@ -51,6 +53,7 @@ final class CommandLineOptions {
       ImmutableList<Integer> offsets,
       ImmutableList<Integer> lengths,
       boolean aosp,
+      boolean astarte,
       boolean version,
       boolean help,
       boolean stdin,
@@ -68,6 +71,7 @@ final class CommandLineOptions {
     this.offsets = offsets;
     this.lengths = lengths;
     this.aosp = aosp;
+    this.astarte = astarte;
     this.version = version;
     this.help = help;
     this.stdin = stdin;
@@ -109,6 +113,10 @@ final class CommandLineOptions {
   /** Use AOSP style instead of Google Style (4-space indentation). */
   boolean aosp() {
     return aosp;
+  }
+
+  boolean astarte() {
+    return astarte;
   }
 
   /** Print the version. */
@@ -183,6 +191,7 @@ final class CommandLineOptions {
     private final ImmutableList.Builder<Integer> lengths = ImmutableList.builder();
     private boolean inPlace = false;
     private boolean aosp = false;
+    private boolean astarte = false;
     private boolean version = false;
     private boolean help = false;
     private boolean stdin = false;
@@ -220,6 +229,11 @@ final class CommandLineOptions {
 
     Builder aosp(boolean aosp) {
       this.aosp = aosp;
+      return this;
+    }
+
+    Builder astarte(boolean astarte) {
+      this.astarte = astarte;
       return this;
     }
 
@@ -286,6 +300,7 @@ final class CommandLineOptions {
           offsets.build(),
           lengths.build(),
           aosp,
+          astarte,
           version,
           help,
           stdin,

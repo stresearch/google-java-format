@@ -96,9 +96,16 @@ public final class Main {
       throw new UsageException();
     }
 
+    Style myStyle = Style.GOOGLE;
+    if (parameters.aosp()) {
+      myStyle = Style.AOSP;
+    }
+    else if (parameters.astarte()) {
+      myStyle = Style.ASTARTE;
+    }
     JavaFormatterOptions options =
         JavaFormatterOptions.builder()
-            .style(parameters.aosp() ? Style.AOSP : Style.GOOGLE)
+            .style(myStyle)
             .formatJavadoc(parameters.formatJavadoc())
             .build();
 

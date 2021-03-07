@@ -160,12 +160,12 @@ public final class Formatter {
             Class.forName("com.google.googlejavaformat.java.java14.Java14InputAstVisitor")
                 .asSubclass(JavaInputAstVisitor.class)
                 .getConstructor(OpsBuilder.class, int.class)
-                .newInstance(builder, options.indentationMultiplier());
+                .newInstance(builder, options.indentationMultiplier(), options.style() == JavaFormatterOptions.Style.ASTARTE);
       } catch (ReflectiveOperationException e) {
         throw new LinkageError(e.getMessage(), e);
       }
     } else {
-      visitor = new JavaInputAstVisitor(builder, options.indentationMultiplier());
+      visitor = new JavaInputAstVisitor(builder, options.indentationMultiplier(), options.style() == JavaFormatterOptions.Style.ASTARTE);
     }
     visitor.scan(unit, null);
     builder.sync(javaInput.getText().length());

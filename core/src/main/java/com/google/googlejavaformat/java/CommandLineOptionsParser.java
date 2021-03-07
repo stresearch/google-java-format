@@ -86,6 +86,10 @@ final class CommandLineOptionsParser {
         case "-a":
           optionsBuilder.aosp(true);
           break;
+        case "--astarte":
+        case "-astarte":
+          optionsBuilder.astarte(true);
+          break;
         case "--version":
         case "-version":
         case "-v":

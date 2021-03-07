@@ -46,8 +46,8 @@ import javax.lang.model.element.Name;
  */
 public class Java14InputAstVisitor extends JavaInputAstVisitor {
 
-  public Java14InputAstVisitor(OpsBuilder builder, int indentMultiplier) {
-    super(builder, indentMultiplier);
+  public Java14InputAstVisitor(OpsBuilder builder, int indentMultiplier, boolean astarte) {
+    super(builder, indentMultiplier, astarte);
   }
 
   @Override

@@ -124,6 +124,13 @@ public class CommandLineFlagsTest {
     } catch (UsageException e) {
       // expected
     }
+    try {
+      Main.processArgs("-astarte");
+      fail();
+    }
+    catch (UsageException e) {
+      // expected
+    }
   }
 
   @Test

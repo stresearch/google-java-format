@@ -20,7 +20,7 @@ import com.google.errorprone.annotations.Immutable;
  * Options for a google-java-format invocation.
  *
  * <p>Like gofmt, the google-java-format CLI exposes <em>no</em> configuration options (aside from
- * {@code --aosp}).
+ * {@code --aosp}, and now {@code --astarte}).
  *
  * <p>The goal of google-java-format is to provide consistent formatting, and to free developers
  * from arguments over style choices. It is an explicit non-goal to support developers' individual
@@ -34,7 +34,11 @@ public class JavaFormatterOptions {
     GOOGLE(1),
 
     /** The AOSP-compliant configuration. */
-    AOSP(2);
+    AOSP(2),
+
+    /** The ASTARTE configuration. */
+    /** Indentation can be changed by passing, e.g., 2 here. */
+    ASTARTE(1);
 
     private final int indentationMultiplier;
 
@@ -78,7 +82,7 @@ public class JavaFormatterOptions {
   public static Builder builder() {
     return new Builder();
   }
-
+ 
   /** A builder for {@link JavaFormatterOptions}. */
   public static class Builder {
     private Style style = Style.GOOGLE;
