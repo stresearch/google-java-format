@@ -15,18 +15,15 @@ class Test {
 
     Set<Short> shorts = new HashSet<>();
     for (short i = 0; i < 99; ++i) {
-
       shorts.add(i);
       shorts.remove(i - 1);
     }
 
     short i = 0;
     do {
-
       shorts.add(i);
       shorts.remove(i - 1);
       i++;
-
     } while (i < 99);
 
     if (true) {

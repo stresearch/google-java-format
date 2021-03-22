@@ -727,11 +727,18 @@ public class JavaInputAstVisitor extends TreePathScanner<Void, Void> {
   public Void visitDoWhileLoop(DoWhileLoopTree node, Void unused) {
     sync(node);
     token("do");
-    visitStatement(
-        node.getStatement(),
-        CollapseEmptyOrNot.YES,
-        AllowLeadingBlankLine.YES,
-        AllowTrailingBlankLine.YES);
+    if (this.astarte) {
+      visitStatement(node.getStatement(),
+                     CollapseEmptyOrNot.YES,
+                     AllowLeadingBlankLine.NO,
+                     AllowTrailingBlankLine.NO);
+    }
+    else {
+      visitStatement(node.getStatement(),
+                     CollapseEmptyOrNot.YES,
+                     AllowLeadingBlankLine.YES,
+                     AllowTrailingBlankLine.YES);
+    }
     if (node.getStatement().getKind() == BLOCK) {
       builder.space();
     } else {
@@ -1040,11 +1047,18 @@ public class JavaInputAstVisitor extends TreePathScanner<Void, Void> {
     }
     builder.close();
     token(")");
-    visitStatement(
-        node.getStatement(),
-        CollapseEmptyOrNot.YES,
-        AllowLeadingBlankLine.YES,
-        AllowTrailingBlankLine.NO);
+    if (this.astarte) {
+      visitStatement(node.getStatement(),
+                     CollapseEmptyOrNot.YES,
+                     AllowLeadingBlankLine.NO,
+                     AllowTrailingBlankLine.NO);
+    }
+    else {
+      visitStatement(node.getStatement(),
+                     CollapseEmptyOrNot.YES,
+                     AllowLeadingBlankLine.YES,
+                     AllowTrailingBlankLine.NO);
+    }
     return null;
   }
 
@@ -2063,11 +2077,18 @@ public class JavaInputAstVisitor extends TreePathScanner<Void, Void> {
     token("(");
     scan(skipParen(node.getCondition()), null);
     token(")");
-    visitStatement(
-        node.getStatement(),
-        CollapseEmptyOrNot.YES,
-        AllowLeadingBlankLine.YES,
-        AllowTrailingBlankLine.NO);
+    if (this.astarte) {
+      visitStatement(node.getStatement(),
+                     CollapseEmptyOrNot.YES,
+                     AllowLeadingBlankLine.NO,
+                     AllowTrailingBlankLine.NO);
+    }
+    else {
+      visitStatement(node.getStatement(),
+                     CollapseEmptyOrNot.YES,
+                     AllowLeadingBlankLine.YES,
+                     AllowTrailingBlankLine.NO);
+    }
     return null;
   }
 
@@ -2135,7 +2156,7 @@ public class JavaInputAstVisitor extends TreePathScanner<Void, Void> {
       builder.open(ZERO);
       builder.open(plusTwo);
       tokenBreakTrailingComment("{", plusTwo);
-      if (allowLeadingBlankLine == AllowLeadingBlankLine.NO) {
+      if (allowLeadingBlankLine == AllowLeadingBlankLine.NO || this.astarte) {
         builder.blankLineWanted(BlankLineWanted.NO);
       } else {
         builder.blankLineWanted(BlankLineWanted.PRESERVE);
@@ -2144,7 +2165,7 @@ public class JavaInputAstVisitor extends TreePathScanner<Void, Void> {
       builder.close();
       builder.forcedBreak();
       builder.close();
-      if (allowTrailingBlankLine == AllowTrailingBlankLine.NO) {
+      if (allowTrailingBlankLine == AllowTrailingBlankLine.NO || this.astarte) {
         builder.blankLineWanted(BlankLineWanted.NO);
       } else {
         builder.blankLineWanted(BlankLineWanted.PRESERVE);

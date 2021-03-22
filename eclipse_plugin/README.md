@@ -8,7 +8,7 @@ See https://github.com/google/google-java-format#eclipse
 
 1) Uncomment `<module>eclipse_plugin</module>` in the parent `pom.xml`
 
-2) Run `mvn install`, which will copy the dependences of the plugin to
+2) Run `mvn install`, which will copy the dependencies of the plugin to
 `eclipse_plugin/lib`.
 
 2) If you are using Java 9, add
